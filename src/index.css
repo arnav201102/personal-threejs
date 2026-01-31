@@ -245,3 +245,74 @@ span {
     opacity: 0;
   }
 }
+
+/* Gentle paper lift */
+@keyframes paperLift {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-paperLift {
+  animation: paperLift 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Soft breathing glow */
+@keyframes softGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 25px 70px rgba(255, 90, 140, 0.35),
+      0 0 60px rgba(200, 40, 90, 0.25);
+  }
+
+  50% {
+    box-shadow:
+      0 40px 120px rgba(255, 80, 130, 0.55),
+      0 0 90px rgba(180, 30, 80, 0.45);
+  }
+}
+
+.animate-softGlow {
+  animation: softGlow 6.5s ease-in-out infinite;
+}
+
+/* Button emotional rise */
+@keyframes riseFade {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-riseFade {
+  animation: riseFade 1s ease-out forwards;
+}
+
+@keyframes floatHeartButton {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) scale(1);
+    opacity: 0;
+  }
+}
+.animate-floatHeartButton {
+  animation: floatHeartButton 1.5s infinite ease-in-out;
+}
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}

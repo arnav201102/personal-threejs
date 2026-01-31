@@ -10,7 +10,7 @@ export default function App() {
       <Route path="/" element={<Welcome />} />
       <Route path="/memories" element={<Memories />} />
       <Route path="/letter" element={<Letter />} />
-      <Route path="/finale" element={<Finale />} />
+      <Route path="/wishes" element={<Finale />} />
     </Routes>
   );
 }

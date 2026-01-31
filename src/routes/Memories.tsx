@@ -58,7 +58,7 @@ export default function Memories() {
       <button
         onClick={() => navigate("/letter")}
         className="
-    fixed top-1/2 left-1/2 -translate-x-1/2 z-20
+    fixed top-1/2 left-1/2 -translate-x-1/2  z-20
     px-9 py-4 rounded-full
     bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500
     text-white text-lg font-medium tracking-wide
