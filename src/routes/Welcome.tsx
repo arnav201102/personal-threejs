@@ -96,10 +96,13 @@ export default function Welcome() {
             Welcome to
           </h1>
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl opacity-50 font-black bg-gradient-to-r from-[#BE185D] via-[#EC4899] to-[#831843] bg-clip-text text-transparent drop-shadow-cuteGlow animate-bob"
+            className="text-4xl md:text-6xl lg:text-7xl opacity-50 font-black drop-shadow-cuteGlow animate-bob"
             style={{ animationDelay: "0.2s" }}
           >
-            Our Dreamland! 💖
+            <span className="bg-gradient-to-r from-[#BE185D] via-[#EC4899] to-[#831843] bg-clip-text text-transparent">
+              Our Dreamland!
+            </span>
+            💖
           </h1>
         </div>
 

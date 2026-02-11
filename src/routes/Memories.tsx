@@ -10,8 +10,11 @@ function generatePositions(count: number) {
   const positions: [number, number, number][] = [];
   const rows = Math.ceil(Math.sqrt(count));
   const cols = Math.ceil(count / rows);
-  const xSpread = 8.2;
-  const ySpread = 3.6;
+  const isMobile = window.innerWidth < 640;
+
+  const xSpread = isMobile ? 5.5 : 8.2;
+  const ySpread = isMobile ? 4.8 : 3.6;
+
   const zStart = -0.8;
   let index = 0;
 

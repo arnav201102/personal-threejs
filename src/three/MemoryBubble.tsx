@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { Html, useTexture } from "@react-three/drei";
-import { Mesh, Vector3 } from "three";
+import { Mesh, Vector3, Texture } from "three";
 import { useRef, useState } from "react";
 
 export default function MemoryBubble({
@@ -12,8 +12,9 @@ export default function MemoryBubble({
   bubbleSize = 1,
 }: any) {
   const ref = useRef<Mesh>(null!);
-  const texture: any = useTexture(memory.image);
   const [hovered, setHovered] = useState(false);
+
+  const texture = useTexture(memory.image) as Texture;
 
   const base = new Vector3(bubbleSize, bubbleSize, bubbleSize);
   const hover = new Vector3(
@@ -21,10 +22,11 @@ export default function MemoryBubble({
     bubbleSize * 1.05,
     bubbleSize * 1.05,
   );
-  const open = new Vector3(1.1, 1.1, 1.1);
+  const open = new Vector3(2, 2, 2);
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
+
     const t = clock.elapsedTime;
 
     if (!isOpen) {
@@ -52,37 +54,47 @@ export default function MemoryBubble({
           if (isOpen) onClose();
         }}
       >
+        {/* Fixed geometry size */}
         <sphereGeometry args={[0.9, 32, 32]} />
         <meshStandardMaterial
           map={texture}
-          // transparent
-          opacity={0.3}
+          transparent
+          opacity={0.35}
           emissive="#ffb3c6"
           emissiveIntensity={0.3}
-          roughness={0.1}
+          roughness={0.15}
         />
       </mesh>
 
       {/* Card */}
       {isOpen && (
-        <Html center transform scale={0.55}>
+        <Html center>
           <div
             onPointerDown={(e) => e.stopPropagation()}
             className="
-               rounded-2xl p-4 w-72
-              bg-gradient-to-br from-white via-pink-50 to-rose-100
-              shadow-[0_30px_90px_rgba(0,0,0,0.4)]
-              animate-memoryGrow
-            "
+        w-800
+        rounded-2xl
+        p-5
+        bg-gradient-to-br from-white via-pink-50 to-rose-100
+        shadow-[0_30px_90px_rgba(0,0,0,0.4)]
+        animate-memoryGrow
+      "
           >
-            <img
-              src={memory.image}
-              className="w-full h-32 object-cover rounded-xl mb-3"
-            />
-            <h3 className="text-xl font-semibold text-[#3A2A4A]">
+            <div className="w-full h-36 rounded-xl overflow-hidden mb-4">
+              <img
+                src={memory.image}
+                alt={memory.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <h3 className="text-xl font-semibold leading-snug text-[#FFFFFF]">
               {memory.title}
             </h3>
-            <p className="mt-2 text-sm text-[#5A4A6A]">{memory.text}</p>
+
+            <p className="mt-2 text-xs text-base leading-relaxed text-[#FFFFFF]">
+              {memory.text}
+            </p>
           </div>
         </Html>
       )}
