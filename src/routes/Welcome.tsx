@@ -5,6 +5,23 @@ export default function Welcome() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const unlockAudio = () => {
+      const audio = new Audio();
+      audio.play().catch(() => {});
+      window.removeEventListener("click", unlockAudio);
+      window.removeEventListener("touchstart", unlockAudio);
+    };
+
+    window.addEventListener("click", unlockAudio, { once: true });
+    window.addEventListener("touchstart", unlockAudio, { once: true });
+
+    return () => {
+      window.removeEventListener("click", unlockAudio);
+      window.removeEventListener("touchstart", unlockAudio);
+    };
+  }, []);
+
+  useEffect(() => {
     const burst = (e: MouseEvent | TouchEvent) => {
       const x = "touches" in e ? e.touches[0].clientX : e.clientX;
       const y = "touches" in e ? e.touches[0].clientY : e.clientY;
@@ -46,6 +63,7 @@ export default function Welcome() {
   return (
     <div className="absolute min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#FFD6E8] via-[#FFF1F7] to-[#E0BBE4] ">
       {/* soft glowing background */}
+
       <div
         className="absolute -inset-20 opacity-60 blur-3xl pointer-events-none"
         style={{
